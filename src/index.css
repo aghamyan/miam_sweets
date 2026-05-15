@@ -38,7 +38,9 @@ body.modal-open {
 }
 
 button,
-a {
+a,
+input,
+textarea {
   font: inherit;
 }
 
@@ -272,6 +274,14 @@ h3 {
 .cake-card {
   overflow: hidden;
   border-radius: var(--radius);
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.cake-card:hover,
+.cake-card:focus-within {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 52px rgba(92, 54, 54, 0.16);
 }
 
 .cake-image-wrap {
@@ -439,73 +449,143 @@ h3 {
   z-index: 20;
   display: grid;
   place-items: end center;
-  background: rgba(60, 43, 43, 0.28);
-  padding: 1rem;
+  background: rgba(60, 43, 43, 0.42);
+  padding: 0;
 }
 
 .modal-card {
-  width: min(34rem, 100%);
-  max-height: calc(100vh - 2rem);
+  position: relative;
+  display: grid;
+  width: 100%;
+  max-height: 100vh;
   overflow: auto;
-  border-radius: 2rem;
+  border-radius: 1.6rem 1.6rem 0 0;
   background: var(--cream);
   box-shadow: 0 24px 70px rgba(60, 43, 43, 0.22);
-  padding: 1rem;
 }
 
 .modal-close {
-  float: right;
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  z-index: 1;
   display: grid;
-  width: 2.4rem;
-  height: 2.4rem;
+  width: 2.55rem;
+  height: 2.55rem;
   place-items: center;
   border: 0;
   border-radius: 50%;
-  background: var(--white);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 10px 24px rgba(60, 43, 43, 0.12);
   color: var(--cocoa);
   cursor: pointer;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
+  line-height: 1;
 }
 
 .modal-image {
   width: 100%;
   aspect-ratio: 4 / 3;
-  border-radius: 1.4rem;
   object-fit: cover;
   background: var(--pink-soft);
 }
 
-.modal-card .eyebrow {
-  margin-top: 1rem;
+.modal-content {
+  padding: 1.1rem;
 }
 
-.modal-card strong {
-  display: block;
-  margin: 1rem 0;
-  color: var(--rose);
-  font-size: 1.2rem;
+.modal-description {
+  color: var(--muted);
 }
 
 .quantity-field {
   display: grid;
-  gap: 0.5rem;
-  margin: 1rem 0;
+  gap: 0.65rem;
+  margin: 1.2rem 0;
   color: var(--cocoa);
   font-weight: 800;
 }
 
-.quantity-field input {
+.quantity-heading,
+.quantity-limits {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.quantity-heading strong {
+  display: inline-grid;
+  min-width: 2.5rem;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--pink-soft);
+  color: var(--rose);
+  font-size: 1.05rem;
+}
+
+.quantity-field input[type='range'] {
+  width: 100%;
+  accent-color: var(--rose);
+  cursor: pointer;
+}
+
+.quantity-limits {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.price-panel {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 1rem 0 1.2rem;
+  border-radius: 1.1rem;
+  background: var(--pink-soft);
+  padding: 0.9rem 1rem;
+  color: var(--rose);
+  font-weight: 800;
+}
+
+.price-panel strong {
+  color: var(--cocoa);
+  font-size: 1.25rem;
+}
+
+.order-form {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.order-form h3 {
+  margin-bottom: 0.1rem;
+}
+
+.order-form label {
+  display: grid;
+  gap: 0.35rem;
+  color: var(--cocoa);
+  font-weight: 800;
+}
+
+.order-form input,
+.order-form textarea {
   width: 100%;
   border: 1px solid rgba(185, 111, 126, 0.24);
   border-radius: 1rem;
   background: var(--white);
   color: var(--cocoa);
-  font: inherit;
   padding: 0.85rem 1rem;
+}
+
+.order-form textarea {
+  resize: vertical;
 }
 
 .modal-button {
   width: 100%;
+  cursor: pointer;
 }
 
 @media (min-width: 640px) {
@@ -542,5 +622,22 @@ h3 {
 
   .modal-backdrop {
     place-items: center;
+    padding: 1rem;
+  }
+
+  .modal-card {
+    grid-template-columns: minmax(0, 0.92fr) minmax(22rem, 1fr);
+    width: min(62rem, 100%);
+    max-height: calc(100vh - 2rem);
+    border-radius: 2rem;
+  }
+
+  .modal-image {
+    height: 100%;
+    min-height: 34rem;
+  }
+
+  .modal-content {
+    padding: 1.5rem;
   }
 }
