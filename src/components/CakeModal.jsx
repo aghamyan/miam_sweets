@@ -1,4 +1,7 @@
 import { useEffect } from 'react'
+import { calculateCakePrice } from '../data/cakes.js'
+
+const formatPrice = (price) => `${price.toLocaleString('hy-AM')} ֏`
 
 export default function CakeModal({ cake, onClose }) {
   useEffect(() => {
@@ -23,6 +26,8 @@ export default function CakeModal({ cake, onClose }) {
     return null
   }
 
+  const startingPrice = calculateCakePrice(cake, cake.minQuantity)
+
   return (
     <div className="modal-backdrop" role="presentation" onClick={onClose}>
       <div className="modal-card" role="dialog" aria-modal="true" aria-labelledby="cake-modal-title" onClick={(event) => event.stopPropagation()}>
@@ -32,8 +37,11 @@ export default function CakeModal({ cake, onClose }) {
         <img src={cake.image} alt={cake.name} className="modal-image" />
         <p className="eyebrow">Տորթ պատվերով</p>
         <h2 id="cake-modal-title">{cake.name}</h2>
-        <p>{cake.details}</p>
-        <strong>{cake.price}</strong>
+        <p>{cake.description}</p>
+        <strong>{formatPrice(startingPrice)}</strong>
+        <p>
+          {cake.minQuantity}–{cake.maxQuantity} բաժին, {formatPrice(cake.pricePerPortion)} / բաժին
+        </p>
         <a className="button button-primary modal-button" href="#contact" onClick={onClose}>
           Պատվիրել այս տորթը
         </a>
