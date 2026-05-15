@@ -1,4 +1,10 @@
+import { calculateCakePrice } from '../data/cakes.js'
+
+const formatPrice = (price) => `${price.toLocaleString('hy-AM')} ֏`
+
 export default function CakeCard({ cake, onSelect }) {
+  const startingPrice = calculateCakePrice(cake, cake.minQuantity)
+
   return (
     <article className="cake-card">
       <div className="cake-image-wrap">
@@ -7,13 +13,12 @@ export default function CakeCard({ cake, onSelect }) {
       <div className="cake-content">
         <div className="cake-title-row">
           <h3>{cake.name}</h3>
-          <span>{cake.price}</span>
+          <span>{formatPrice(startingPrice)}</span>
         </div>
         <p>{cake.description}</p>
-        <div className="tag-list" aria-label="Հատկանիշներ">
-          {cake.tags.map((tag) => (
-            <span key={tag}>{tag}</span>
-          ))}
+        <div className="tag-list" aria-label="Պատվերի պայմաններ">
+          <span>{cake.minQuantity}–{cake.maxQuantity} բաժին</span>
+          <span>{formatPrice(cake.pricePerPortion)} / բաժին</span>
         </div>
         <button className="text-button" type="button" onClick={onSelect}>
           Մանրամասներ
