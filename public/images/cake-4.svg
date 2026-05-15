@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">MiamSweets cake 4</title>
+  <desc id="desc">Decorative homemade cake illustration.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#e2f5e8"/>
+      <stop offset="1" stop-color="#fffaf4"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="26" stdDeviation="24" flood-color="#5c3636" flood-opacity=".18"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <circle cx="190" cy="150" r="108" fill="#5a9b72" opacity=".12"/>
+  <circle cx="1010" cy="740" r="150" fill="#5a9b72" opacity=".14"/>
+  <g filter="url(#shadow)">
+    <ellipse cx="600" cy="680" rx="360" ry="76" fill="#d8b8aa" opacity=".38"/>
+    <path d="M300 385c0-96 134-174 300-174s300 78 300 174v238c0 87-134 158-300 158s-300-71-300-158z" fill="#fffaf4"/>
+    <ellipse cx="600" cy="385" rx="300" ry="174" fill="#fff"/>
+    <path d="M314 390c53 63 160 103 286 103s233-40 286-103v119c-61 54-164 88-286 88s-225-34-286-88z" fill="#e2f5e8"/>
+    <path d="M388 334c58-58 141-88 236-88 82 0 151 23 205 69" fill="none" stroke="#5a9b72" stroke-width="28" stroke-linecap="round" opacity=".65"/>
+    <circle cx="480" cy="318" r="24" fill="#5a9b72" opacity=".75"/>
+    <circle cx="620" cy="279" r="21" fill="#5a9b72" opacity=".65"/>
+    <circle cx="752" cy="329" r="25" fill="#5a9b72" opacity=".75"/>
+    <path d="M474 165h252" stroke="#5a9b72" stroke-width="14" stroke-linecap="round" opacity=".55"/>
+  </g>
+  <text x="600" y="840" text-anchor="middle" font-family="Arial, sans-serif" font-size="54" font-weight="700" fill="#5a9b72">MiamSweets</text>
+</svg>

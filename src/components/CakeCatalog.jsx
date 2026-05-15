@@ -5,11 +5,11 @@ export default function CakeCatalog({ cakes, onSelectCake }) {
     <section className="section" id="catalog">
       <div className="section-heading">
         <p className="eyebrow">Տեսականի</p>
-        <h2>Սիրված տորթեր</h2>
-        <p>Ընտրեք պատրաստի համադրություններից կամ պատվիրեք Ձեր նախընտրած անհատական տարբերակը։</p>
+        <h2>Մեր տորթերը</h2>
+        <p>Ընտրեք տորթը, նշեք քանակը և տեսեք գինը։</p>
       </div>
       <div className="catalog-grid">
-        {cakes.map((cake) => (
+        {cakes.slice(0, 6).map((cake) => (
           <CakeCard key={cake.id} cake={cake} onSelect={() => onSelectCake(cake)} />
         ))}
       </div>
