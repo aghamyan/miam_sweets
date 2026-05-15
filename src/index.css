@@ -86,8 +86,10 @@ img {
 }
 
 .header-nav {
-  display: none;
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: flex-end;
   gap: 0.35rem;
   color: var(--muted);
   font-size: 0.95rem;
@@ -141,10 +143,10 @@ h3 {
 }
 
 h1 {
-  max-width: 12ch;
+  max-width: 14ch;
   margin-bottom: 1rem;
-  font-size: clamp(2.7rem, 13vw, 5.9rem);
-  letter-spacing: -0.08em;
+  font-size: clamp(2.45rem, 9vw, 5.45rem);
+  letter-spacing: -0.065em;
 }
 
 h2 {
@@ -236,7 +238,7 @@ h3 {
   border-radius: 1.7rem;
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.88), transparent),
-    url('/images/cake-1.jpg') center/cover;
+    url('/images/cake-1.svg') center/cover;
   content: '';
 }
 
@@ -325,6 +327,11 @@ h3 {
   padding: 0;
 }
 
+.card-button {
+  width: 100%;
+  cursor: pointer;
+}
+
 .order-section {
   padding-top: 2rem;
 }
@@ -396,6 +403,22 @@ h3 {
   margin-top: 1.4rem;
 }
 
+.contact-details {
+  display: grid;
+  gap: 0.65rem;
+  margin: 1.35rem 0;
+}
+
+.contact-details a {
+  width: fit-content;
+  color: var(--rose);
+  font-weight: 800;
+}
+
+.contact-details a:hover {
+  text-decoration: underline;
+}
+
 .site-footer {
   display: flex;
   flex-direction: column;
@@ -463,15 +486,29 @@ h3 {
   font-size: 1.2rem;
 }
 
+.quantity-field {
+  display: grid;
+  gap: 0.5rem;
+  margin: 1rem 0;
+  color: var(--cocoa);
+  font-weight: 800;
+}
+
+.quantity-field input {
+  width: 100%;
+  border: 1px solid rgba(185, 111, 126, 0.24);
+  border-radius: 1rem;
+  background: var(--white);
+  color: var(--cocoa);
+  font: inherit;
+  padding: 0.85rem 1rem;
+}
+
 .modal-button {
   width: 100%;
 }
 
 @media (min-width: 640px) {
-  .header-nav {
-    display: flex;
-  }
-
   .catalog-grid,
   .steps-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -479,7 +516,7 @@ h3 {
 
   .site-footer {
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
   }
 }
 

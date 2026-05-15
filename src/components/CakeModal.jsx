@@ -1,9 +1,17 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { calculateCakePrice } from '../data/cakes.js'
 
-const formatPrice = (price) => `${price.toLocaleString('hy-AM')} ֏`
+const formatPrice = (price) => `${price.toLocaleString('hy-AM')} դրամ`
 
 export default function CakeModal({ cake, onClose }) {
+  const [quantity, setQuantity] = useState(0)
+
+  useEffect(() => {
+    if (cake) {
+      setQuantity(cake.minQuantity)
+    }
+  }, [cake])
+
   useEffect(() => {
     if (!cake) return undefined
 
@@ -26,8 +34,7 @@ export default function CakeModal({ cake, onClose }) {
     return null
   }
 
-  const startingPrice = calculateCakePrice(cake, cake.minQuantity)
-
+  const totalPrice = calculateCakePrice(cake, quantity)
   return (
     <div className="modal-backdrop" role="presentation" onClick={onClose}>
       <div className="modal-card" role="dialog" aria-modal="true" aria-labelledby="cake-modal-title" onClick={(event) => event.stopPropagation()}>
@@ -35,15 +42,29 @@ export default function CakeModal({ cake, onClose }) {
           ×
         </button>
         <img src={cake.image} alt={cake.name} className="modal-image" />
-        <p className="eyebrow">Տորթ պատվերով</p>
+        <p className="eyebrow">Դիտել / Պատվիրել</p>
         <h2 id="cake-modal-title">{cake.name}</h2>
         <p>{cake.description}</p>
-        <strong>{formatPrice(startingPrice)}</strong>
+        <label className="quantity-field" htmlFor="cake-quantity">
+          <span>Նշեք քանակը</span>
+          <input
+            id="cake-quantity"
+            type="number"
+            min={cake.minQuantity}
+            max={cake.maxQuantity}
+            value={quantity}
+            onChange={(event) => {
+              const nextQuantity = Number(event.target.value)
+              setQuantity(Math.min(cake.maxQuantity, Math.max(cake.minQuantity, nextQuantity)))
+            }}
+          />
+        </label>
+        <strong>Ընդհանուր՝ {formatPrice(totalPrice)}</strong>
         <p>
           {cake.minQuantity}–{cake.maxQuantity} բաժին, {formatPrice(cake.pricePerPortion)} / բաժին
         </p>
         <a className="button button-primary modal-button" href="#contact" onClick={onClose}>
-          Պատվիրել այս տորթը
+          Ուղարկել պատվերի հայտ
         </a>
       </div>
     </div>

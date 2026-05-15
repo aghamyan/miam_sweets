@@ -6,8 +6,9 @@ export default function Header() {
         <span>MiamSweets</span>
       </a>
       <nav className="header-nav" aria-label="Գլխավոր բաժիններ">
-        <a href="#catalog">Տորթեր</a>
-        <a href="#order">Պատվեր</a>
+        <a href="#catalog">Տեսականի</a>
+        <a href="#order">Ինչպես պատվիրել</a>
+        <a href="#faq">FAQ</a>
         <a href="#contact">Կապ</a>
       </nav>
     </header>
