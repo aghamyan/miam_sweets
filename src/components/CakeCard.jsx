@@ -6,7 +6,7 @@ export default function CakeCard({ cake, onSelect }) {
   const startingPrice = calculateCakePrice(cake, cake.minQuantity)
 
   return (
-    <article className="cake-card">
+    <article className="cake-card" onClick={onSelect}>
       <div className="cake-image-wrap">
         <img src={cake.image} alt={cake.name} className="cake-image" />
       </div>
@@ -20,7 +20,7 @@ export default function CakeCard({ cake, onSelect }) {
           <span>{cake.minQuantity}–{cake.maxQuantity} բաժին</span>
           <span>{formatPrice(cake.pricePerPortion)} / բաժին</span>
         </div>
-        <button className="button button-soft card-button" type="button" onClick={onSelect}>
+        <button className="button button-soft card-button" type="button">
           Դիտել / Պատվիրել
         </button>
       </div>
