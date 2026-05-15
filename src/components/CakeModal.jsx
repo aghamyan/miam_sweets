@@ -7,12 +7,20 @@ export default function CakeModal({ cake, onClose }) {
   const quantityId = useId()
   const nameId = useId()
   const phoneId = useId()
+  const locationId = useId()
+  const dateId = useId()
   const noteId = useId()
   const [quantity, setQuantity] = useState(cake?.minQuantity ?? 1)
+  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState('')
 
   useEffect(() => {
     if (cake) {
       setQuantity(cake.minQuantity)
+      setIsSubmitted(false)
+      setIsSubmitting(false)
+      setSubmitError('')
     }
   }, [cake])
 
@@ -45,8 +53,33 @@ export default function CakeModal({ cake, onClose }) {
     setQuantity(Math.min(cake.maxQuantity, Math.max(cake.minQuantity, nextQuantity)))
   }
 
-  const handleSubmit = (event) => {
+  const encodeFormData = (formData) => new URLSearchParams(formData).toString()
+
+  const handleSubmit = async (event) => {
     event.preventDefault()
+    setSubmitError('')
+    setIsSubmitting(true)
+
+    const formData = new FormData(event.currentTarget)
+
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encodeFormData(formData),
+      })
+
+      if (!response.ok) {
+        setSubmitError('Չհաջողվեց ուղարկել հայտը։ Խնդրում ենք փորձել կրկին։')
+        return
+      }
+
+      setIsSubmitted(true)
+    } catch {
+      setSubmitError('Չհաջողվեց ուղարկել հայտը։ Խնդրում ենք փորձել կրկին։')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -94,24 +127,55 @@ export default function CakeModal({ cake, onClose }) {
             <strong>{formatPrice(totalPrice)}</strong>
           </div>
 
-          <form className="order-form" onSubmit={handleSubmit}>
-            <h3>Պատվերի հայտ</h3>
-            <label htmlFor={nameId}>
-              Անուն
-              <input id={nameId} name="name" type="text" placeholder="Ձեր անունը" autoComplete="name" />
-            </label>
-            <label htmlFor={phoneId}>
-              Հեռախոսահամար
-              <input id={phoneId} name="phone" type="tel" placeholder="+374 __ __ __ __" autoComplete="tel" />
-            </label>
-            <label htmlFor={noteId}>
-              Նշումներ
-              <textarea id={noteId} name="note" rows="3" placeholder="Օր, հասցե կամ ձևավորման նախընտրություն" />
-            </label>
-            <button className="button button-primary modal-button" type="submit">
-              Ուղարկել պատվերի հայտ
-            </button>
-          </form>
+          {isSubmitted ? (
+            <div className="order-success" role="status">
+              Ձեր պատվերի հայտը ստացվել է։ Մեր թիմը կկապվի ձեզ հետ մանրամասները հաստատելու համար։
+            </div>
+          ) : (
+            <form className="order-form" name="cake-order" method="POST" data-netlify="true" onSubmit={handleSubmit}>
+              <input type="hidden" name="form-name" value="cake-order" />
+              <input type="hidden" name="selected-cake" value={cake.name} />
+              <input type="hidden" name="portion-count" value={quantity} />
+              <input type="hidden" name="calculated-price" value={totalPrice} />
+
+              <h3>Պատվերի հայտ</h3>
+              <label htmlFor={nameId}>
+                Անուն
+                <input id={nameId} name="name" type="text" placeholder="Ձեր անունը" autoComplete="name" required />
+              </label>
+              <label htmlFor={phoneId}>
+                Հեռախոսահամար
+                <input id={phoneId} name="phone" type="tel" placeholder="+374 __ __ __ __" autoComplete="tel" required />
+              </label>
+              <label htmlFor={locationId}>
+                Հասցե / Տարածք
+                <input
+                  id={locationId}
+                  name="location"
+                  type="text"
+                  placeholder="Առաքման հասցեն կամ տարածքը"
+                  autoComplete="street-address"
+                  required
+                />
+              </label>
+              <label htmlFor={dateId}>
+                Նախընտրելի ամսաթիվ
+                <input id={dateId} name="preferred-date" type="date" required />
+              </label>
+              <label htmlFor={noteId}>
+                Լրացուցիչ նշումներ
+                <textarea id={noteId} name="extra-notes" rows="3" placeholder="Ձևավորման կամ առաքման նախընտրություններ" />
+              </label>
+              {submitError ? (
+                <p className="order-error" role="alert">
+                  {submitError}
+                </p>
+              ) : null}
+              <button className="button button-primary modal-button" type="submit" disabled={isSubmitting}>
+                {isSubmitting ? 'Ուղարկվում է…' : 'Ուղարկել պատվերի հայտ'}
+              </button>
+            </form>
+          )}
         </div>
       </div>
     </div>

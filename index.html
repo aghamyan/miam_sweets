@@ -10,6 +10,17 @@
     <title>MiamSweets</title>
   </head>
   <body>
+    <form name="cake-order" method="POST" data-netlify="true" hidden>
+      <input type="hidden" name="form-name" value="cake-order" />
+      <input type="text" name="name" />
+      <input type="tel" name="phone" />
+      <input type="text" name="location" />
+      <input type="text" name="selected-cake" />
+      <input type="number" name="portion-count" />
+      <input type="number" name="calculated-price" />
+      <input type="date" name="preferred-date" />
+      <textarea name="extra-notes"></textarea>
+    </form>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
