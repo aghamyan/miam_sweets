@@ -107,9 +107,9 @@ img {
   display: inline-flex;
   min-height: 3.05rem;
   align-items: center;
-  gap: 0.65rem;
+  gap: 0.7rem;
   border-radius: 999px;
-  padding: 0.25rem 0.8rem 0.25rem 0.3rem;
+  padding: 0.25rem 0.9rem 0.25rem 0.35rem;
   color: var(--cocoa);
   font-size: clamp(0.96rem, 2.6vw, 1.05rem);
   font-weight: 800;
@@ -117,18 +117,19 @@ img {
   white-space: nowrap;
 }
 
-.logo-mark {
-  display: grid;
-  width: 2.45rem;
-  height: 2.45rem;
-  place-items: center;
+.logo-image {
+  width: 2.625rem;
+  height: 2.625rem;
+  flex: 0 0 auto;
   border: 1px solid rgba(255, 255, 255, 0.7);
   border-radius: 50%;
-  background: linear-gradient(135deg, #f7b9c5, #fff4f6 72%);
+  background: rgba(255, 255, 255, 0.76);
   box-shadow: 0 10px 24px rgba(173, 102, 118, 0.18);
-  color: var(--rose-dark);
-  font-family: 'Noto Serif Armenian', serif;
-  font-weight: 800;
+  object-fit: contain;
+}
+
+.logo-text {
+  display: inline-block;
 }
 
 .header-nav {

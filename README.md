@@ -96,6 +96,24 @@ cake-6.jpg
 
 The site uses these image paths from `src/data/cakes.js`. If an image is missing, the cake card shows a styled fallback that says `Նկարը շուտով`.
 
+## Replace Logo
+
+Put the logo file inside:
+
+```text
+public/logo/
+```
+
+Name it:
+
+```text
+miamsweets-logo.png
+```
+
+Recommended format: transparent PNG or SVG.
+
+Recommended size: at least `512x512` for an icon-style logo.
+
 ## Future Pricing Improvement
 
 Current pricing is linear:
