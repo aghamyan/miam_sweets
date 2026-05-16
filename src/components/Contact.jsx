@@ -9,8 +9,13 @@ export default function Contact() {
         <p className="eyebrow">Կապ</p>
         <h2>Կապ հաստատեք MiamSweets-ի հետ</h2>
         <p>
-          Պատվերի համար զանգահարեք կամ գրեք սոցիալական հարթակներում։ Նշեք տորթը, չափը և ցանկալի օրը։
+          Պատվերի համար զանգահարեք կամ գրեք սոցիալական հարթակներում։ Նշեք տորթը, չափը և ցանկալի օրը, իսկ մենք կօգնենք ընտրել ամենահարմար տարբերակը։
         </p>
+        <div className="contact-note" aria-label="Պատվերի կարևոր նշումներ">
+          <span>Անհատական պատվերներ</span>
+          <span>Ջերմ խորհրդատվություն</span>
+          <span>Հստակ պայմանավորվածություն</span>
+        </div>
         <div className="contact-details" aria-label="Կոնտակտային տվյալներ">
           <a href={`tel:${phone}`}>Phone: {phone}</a>
           <a href={instagram} target="_blank" rel="noreferrer">Instagram</a>
