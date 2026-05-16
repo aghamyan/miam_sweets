@@ -54,20 +54,19 @@ export default function CakeModal({ cake, onClose }) {
     setQuantity(Math.min(cake.maxQuantity, Math.max(cake.minQuantity, nextQuantity)))
   }
 
-  const encodeFormData = (formData) => new URLSearchParams(formData).toString()
-
   const handleSubmit = async (event) => {
     event.preventDefault()
     setSubmitError('')
     setIsSubmitting(true)
 
-    const formData = new FormData(event.currentTarget)
+    const form = event.currentTarget
+    const formData = new FormData(form)
 
     try {
       const response = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: encodeFormData(formData),
+        body: new URLSearchParams(formData).toString(),
       })
 
       if (!response.ok) {
@@ -138,7 +137,14 @@ export default function CakeModal({ cake, onClose }) {
               Ձեր պատվերի հայտը ստացվել է։ Մեր թիմը կկապվի ձեզ հետ մանրամասները հաստատելու համար։
             </div>
           ) : (
-            <form className="order-form" name="cake-order" method="POST" data-netlify="true" onSubmit={handleSubmit}>
+            <form
+              className="order-form"
+              name="cake-order"
+              method="POST"
+              action="/"
+              data-netlify="true"
+              onSubmit={handleSubmit}
+            >
               <input type="hidden" name="form-name" value="cake-order" />
               <input type="hidden" name="selected-cake" value={cake.name} />
               <input type="hidden" name="portion-count" value={quantity} />
