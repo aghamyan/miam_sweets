@@ -337,8 +337,9 @@ h3 {
   inset: 1.1rem;
   border-radius: 1.55rem;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 250, 245, 0.9)),
-    url('/images/cake-1.svg') center/cover;
+    radial-gradient(circle at 72% 32%, rgba(255, 255, 255, 0.92) 0 9%, transparent 10%),
+    radial-gradient(circle at 36% 58%, rgba(173, 102, 118, 0.18) 0 18%, transparent 19%),
+    linear-gradient(145deg, #fff3f5 0%, #fffaf0 52%, #f7dfe5 100%);
   content: '';
 }
 
@@ -463,6 +464,39 @@ h3 {
   height: 100%;
   object-fit: cover;
   transition: transform 320ms ease;
+}
+
+.cake-image-placeholder {
+  position: relative;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  place-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 24% 22%, rgba(255, 255, 255, 0.9) 0 9%, transparent 10%),
+    linear-gradient(135deg, #fff0f3 0%, #fff9ef 48%, #f7dfe5 100%);
+  color: var(--rose-dark);
+  font-size: 1rem;
+  font-weight: 900;
+  text-align: center;
+}
+
+.cake-image-placeholder::before {
+  position: absolute;
+  inset: 0.85rem;
+  border: 1px solid rgba(173, 102, 118, 0.16);
+  border-radius: calc(var(--radius) - 0.7rem);
+  content: '';
+}
+
+.cake-image-placeholder span {
+  position: relative;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.76);
+  box-shadow: 0 12px 30px rgba(68, 42, 42, 0.1);
+  padding: 0.72rem 1rem;
 }
 
 .cake-card:hover .cake-image {
@@ -707,6 +741,10 @@ h3 {
   aspect-ratio: 4 / 3;
   object-fit: cover;
   background: var(--pink-soft);
+}
+
+.modal-image-placeholder {
+  min-height: 16rem;
 }
 
 .modal-content {

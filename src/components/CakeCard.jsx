@@ -1,4 +1,5 @@
 import { calculateCakePrice } from '../data/cakes.js'
+import CakeImage from './CakeImage.jsx'
 
 const formatPrice = (price) => `${price.toLocaleString('hy-AM')} դրամ`
 
@@ -8,7 +9,7 @@ export default function CakeCard({ cake, onSelect }) {
   return (
     <article className="cake-card" onClick={onSelect}>
       <div className="cake-image-wrap">
-        <img src={cake.image} alt={cake.name} className="cake-image" />
+        <CakeImage src={cake.image} alt={cake.name} className="cake-image" />
       </div>
       <div className="cake-content">
         <div className="cake-title-row">

@@ -1,5 +1,6 @@
 import { useEffect, useId, useState } from 'react'
 import { calculateCakePrice } from '../data/cakes.js'
+import CakeImage from './CakeImage.jsx'
 
 const formatPrice = (price) => `${price.toLocaleString('hy-AM')} դրամ`
 
@@ -95,7 +96,12 @@ export default function CakeModal({ cake, onClose }) {
           ×
         </button>
 
-        <img src={cake.image} alt={cake.name} className="modal-image" />
+        <CakeImage
+          src={cake.image}
+          alt={cake.name}
+          className="modal-image"
+          placeholderClassName="modal-image modal-image-placeholder"
+        />
 
         <div className="modal-content">
           <p className="eyebrow">Դիտել / Պատվիրել</p>
