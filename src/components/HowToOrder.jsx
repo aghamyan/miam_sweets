@@ -1,7 +1,16 @@
 const steps = [
-  'Ընտրեք տորթը',
-  'Նշեք չափը',
-  'Ուղարկեք հայտը',
+  {
+    title: 'Ընտրեք տորթը',
+    text: 'Դիտեք տեսականին և ընտրեք այն համադրությունը, որը համապատասխանում է Ձեր առիթին։',
+  },
+  {
+    title: 'Նշեք չափը',
+    text: 'Ընտրեք անհրաժեշտ բաժինների քանակը, իսկ հաշվարկված գինը կերևա անմիջապես։',
+  },
+  {
+    title: 'Ուղարկեք հայտը',
+    text: 'Թողեք Ձեր տվյալները, և մենք կկապվենք՝ մանրամասներն ու օրը հաստատելու համար։',
+  },
 ]
 
 export default function HowToOrder() {
@@ -13,9 +22,10 @@ export default function HowToOrder() {
       </div>
       <div className="steps-grid">
         {steps.map((step, index) => (
-          <article className="step-card" key={step}>
+          <article className="step-card" key={step.title}>
             <span>{index + 1}</span>
-            <h3>{step}</h3>
+            <h3>{step.title}</h3>
+            <p>{step.text}</p>
           </article>
         ))}
       </div>
